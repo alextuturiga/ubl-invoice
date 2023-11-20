@@ -12,9 +12,9 @@ class LegalEntity implements XmlSerializable
     private $companyIdAttributes;
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getRegistrationName(): ?string
+    public function getRegistrationName()
     {
         return $this->registrationName;
     }
@@ -23,16 +23,16 @@ class LegalEntity implements XmlSerializable
      * @param string $registrationName
      * @return LegalEntity
      */
-    public function setRegistrationName(?string $registrationName): LegalEntity
+    public function setRegistrationName($registrationName)
     {
         $this->registrationName = $registrationName;
         return $this;
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getCompanyId(): ?string
+    public function getCompanyId()
     {
         return $this->companyId;
     }
@@ -41,7 +41,7 @@ class LegalEntity implements XmlSerializable
      * @param string $companyId
      * @return LegalEntity
      */
-    public function setCompanyId(?string $companyId, $attributes = null): LegalEntity
+    public function setCompanyId($companyId, $attributes = null)
     {
         $this->companyId = $companyId;
         if (isset($attributes)) {
@@ -56,7 +56,7 @@ class LegalEntity implements XmlSerializable
      * @param Writer $writer
      * @return void
      */
-    public function xmlSerialize(Writer $writer): void
+    public function xmlSerialize(Writer $writer)
     {
         $writer->write([
             Schema::CBC . 'RegistrationName' => $this->registrationName,

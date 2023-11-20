@@ -13,9 +13,9 @@ class Contact implements XmlSerializable
     private $electronicMail;
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getName(): ?string
+    public function getName()
     {
         return $this->name;
     }
@@ -24,7 +24,7 @@ class Contact implements XmlSerializable
      * @param mixed $name
      * @return Contact
      */
-    public function setName($name): Contact
+    public function setName($name)
     {
         $this->name = $name;
         return $this;
@@ -33,52 +33,52 @@ class Contact implements XmlSerializable
     /**
      * @return mixed
      */
-    public function getTelephone(): ?string
+    public function getTelephone()
     {
         return $this->telephone;
     }
 
     /**
-     * @param string $telephone
+     * @param mixed $telephone
      * @return Contact
      */
-    public function setTelephone(?string $telephone): Contact
+    public function setTelephone($telephone)
     {
         $this->telephone = $telephone;
         return $this;
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getTelefax(): ?string
+    public function getTelefax()
     {
         return $this->telefax;
     }
 
     /**
-     * @param string $telefax
+     * @param mixed $telefax
      * @return Contact
      */
-    public function setTelefax(?string $telefax): Contact
+    public function setTelefax($telefax)
     {
         $this->telefax = $telefax;
         return $this;
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getElectronicMail(): ?string
+    public function getElectronicMail()
     {
         return $this->electronicMail;
     }
 
     /**
-     * @param string $electronicMail
+     * @param mixed $electronicMail
      * @return Contact
      */
-    public function setElectronicMail(?string $electronicMail): Contact
+    public function setElectronicMail($electronicMail)
     {
         $this->electronicMail = $electronicMail;
         return $this;
@@ -90,27 +90,27 @@ class Contact implements XmlSerializable
      * @param Writer $writer
      * @return void
      */
-    public function xmlSerialize(Writer $writer): void
+    public function xmlSerialize(Writer $writer)
     {
-        if ($this->name !== null) {
+        if ($this->name !== '') {
             $writer->write([
                 Schema::CBC . 'Name' => $this->name
             ]);
         }
 
-        if ($this->telephone !== null) {
+        if ($this->telephone !== '') {
             $writer->write([
                 Schema::CBC . 'Telephone' => $this->telephone
             ]);
         }
 
-        if ($this->telefax !== null) {
-            $writer->write([
-                Schema::CBC . 'Telefax' => $this->telefax
-            ]);
-        }
+//        if ($this->telefax !== '') {
+//            $writer->write([
+//                Schema::CBC . 'Telefax' => $this->telefax
+//            ]);
+//        }
 
-        if ($this->electronicMail !== null) {
+        if ($this->electronicMail !== '') {
             $writer->write([
                 Schema::CBC . 'ElectronicMail' => $this->electronicMail
             ]);

@@ -8,12 +8,11 @@ use Sabre\Xml\XmlSerializable;
 class TaxScheme implements XmlSerializable
 {
     private $id;
-    private $name;
     private $taxTypeCode;
-    private $currencyCode;
+    private $name;
 
     /**
-     * @return string
+     * @return mixed
      */
     public function getId()
     {
@@ -21,93 +20,56 @@ class TaxScheme implements XmlSerializable
     }
 
     /**
-     * @param string $id
+     * @param mixed $id
      * @return TaxScheme
      */
-    public function setId(string $id): TaxScheme
+    public function setId($id)
     {
         $this->id = $id;
         return $this;
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param string $name
-     * @return TaxScheme
-     */
-    public function setName(?string $name)
-    {
-        $this->name = $name;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTaxTypeCode(): ?string
+    public function getTaxTypeCode()
     {
         return $this->taxTypeCode;
     }
 
     /**
-     * @param string $taxTypeCode
+     * @param mixed $taxTypeCode
      * @return TaxScheme
      */
-    public function setTaxTypeCode(?string $taxTypeCode)
+    public function setTaxTypeCode($taxTypeCode)
     {
         $this->taxTypeCode = $taxTypeCode;
         return $this;
     }
 
     /**
-     * @return string
-     */
-    public function getCurrencyCode(): ?string
-    {
-        return $this->currencyCode;
-    }
-
-    /**
-     * @param string $currencyCode
+     * @param mixed $name
      * @return TaxScheme
      */
-    public function setCurrencyCode(?string $currencyCode)
+    public function setName($name)
     {
-        $this->currencyCode = $currencyCode;
+        $this->name = $name;
         return $this;
     }
 
-    /**
-     * The xmlSerialize method is called during xml writing.
-     *
-     * @param Writer $writer
-     * @return void
-     */
-    public function xmlSerialize(Writer $writer): void
+    public function xmlSerialize(Writer $writer)
     {
         $writer->write([
             Schema::CBC . 'ID' => $this->id
         ]);
-        if ($this->name !== null) {
-            $writer->write([
-                Schema::CBC . 'Name' => $this->name
-            ]);
-        }
         if ($this->taxTypeCode !== null) {
             $writer->write([
                 Schema::CBC . 'TaxTypeCode' => $this->taxTypeCode
             ]);
         }
-        if ($this->currencyCode !== null) {
+        if ($this->name !== null) {
             $writer->write([
-                Schema::CBC . 'CurrencyCode' => $this->currencyCode
+                Schema::CBC . 'Name' => $this->name
             ]);
         }
     }

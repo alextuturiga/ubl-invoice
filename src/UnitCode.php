@@ -9,7 +9,6 @@ namespace NumNum\UBL;
 class UnitCode
 {
     const UNIT = 'C62';
-    const PIECE = 'H87';
 
     const ARE = 'ARE';
     const HECTARE = 'HAR';
@@ -26,6 +25,4 @@ class UnitCode
     const MINUTE = 'MIN';
     const HOUR = 'HUR';
     const DAY = 'DAY';
-    const MONTH = 'MON';
-    const YEAR = 'ANN';
 }

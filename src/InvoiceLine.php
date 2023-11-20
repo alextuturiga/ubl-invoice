@@ -7,72 +7,65 @@ use Sabre\Xml\XmlSerializable;
 
 class InvoiceLine implements XmlSerializable
 {
-    public $xmlTagName = 'InvoiceLine';
     private $id;
-    protected $invoicedQuantity;
+    private $invoicedQuantity;
     private $lineExtensionAmount;
-    private $unitCode = UnitCode::UNIT;
-    private $unitCodeListId;
+    private $unitCode = 'MON';
     private $taxTotal;
-    private $invoicePeriod;
     private $note;
     private $item;
     private $price;
     private $accountingCostCode;
-    private $accountingCost;
-
-    // See CreditNoteLine.php
-    protected $isCreditNoteLine = false;
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getId(): ?string
+    public function getId()
     {
         return $this->id;
     }
 
     /**
-     * @param string $id
+     * @param mixed $id
      * @return InvoiceLine
      */
-    public function setId(?string $id): InvoiceLine
+    public function setId($id)
     {
         $this->id = $id;
         return $this;
     }
 
     /**
-     * @return float
+     * @return mixed
      */
-    public function getInvoicedQuantity(): ?float
+    public function getInvoicedQuantity()
     {
         return $this->invoicedQuantity;
     }
 
     /**
-     * @param ?float $invoicedQuantity
+     * @param mixed $invoicedQuantity
      * @return InvoiceLine
      */
-    public function setInvoicedQuantity(?float $invoicedQuantity): InvoiceLine
+    public function setInvoicedQuantity($invoicedQuantity)
     {
         $this->invoicedQuantity = $invoicedQuantity;
         return $this;
     }
 
     /**
-     * @return float
+     * @return mixed
      */
-    public function getLineExtensionAmount(): ?float
+    public function getLineExtensionAmount()
     {
         return $this->lineExtensionAmount;
     }
 
     /**
-     * @param float $lineExtensionAmount
+     * @param mixed $lineExtensionAmount
      * @return InvoiceLine
      */
-    public function setLineExtensionAmount(?float $lineExtensionAmount): InvoiceLine
+    public function setLineExtensionAmount($lineExtensionAmount)
     {
         $this->lineExtensionAmount = $lineExtensionAmount;
         return $this;
@@ -81,7 +74,7 @@ class InvoiceLine implements XmlSerializable
     /**
      * @return TaxTotal
      */
-    public function getTaxTotal(): ?TaxTotal
+    public function getTaxTotal()
     {
         return $this->taxTotal;
     }
@@ -90,61 +83,43 @@ class InvoiceLine implements XmlSerializable
      * @param TaxTotal $taxTotal
      * @return InvoiceLine
      */
-    public function setTaxTotal(?TaxTotal $taxTotal): InvoiceLine
+    public function setTaxTotal(TaxTotal $taxTotal)
     {
         $this->taxTotal = $taxTotal;
         return $this;
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getNote(): ?string
+    public function getNote()
     {
         return $this->note;
     }
 
     /**
-     * @param string $note
+     * @param mixed $note
      * @return InvoiceLine
      */
-    public function setNote(?string $note): InvoiceLine
+    public function setNote($note)
     {
         $this->note = $note;
         return $this;
     }
 
     /**
-     * @return InvoicePeriod
+     * @return mixed
      */
-    public function getInvoicePeriod(): ?InvoicePeriod
-    {
-        return $this->invoicePeriod;
-    }
-
-    /**
-     * @param InvoicePeriod $invoicePeriod
-     * @return InvoiceLine
-     */
-    public function setInvoicePeriod(?InvoicePeriod $invoicePeriod)
-    {
-        $this->invoicePeriod = $invoicePeriod;
-        return $this;
-    }
-
-    /**
-     * @return Item
-     */
-    public function getItem(): ?Item
+    public function getItem()
     {
         return $this->item;
     }
 
     /**
-     * @param Item $item
+     * @param mixed $item
      * @return InvoiceLine
      */
-    public function setItem(Item $item): InvoiceLine
+    public function setItem($item)
     {
         $this->item = $item;
         return $this;
@@ -153,7 +128,7 @@ class InvoiceLine implements XmlSerializable
     /**
      * @return Price
      */
-    public function getPrice(): ?Price
+    public function getPrice()
     {
         return $this->price;
     }
@@ -162,81 +137,45 @@ class InvoiceLine implements XmlSerializable
      * @param Price $price
      * @return InvoiceLine
      */
-    public function setPrice(?Price $price): InvoiceLine
+    public function setPrice(Price $price)
     {
         $this->price = $price;
         return $this;
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getUnitCode(): ?string
+    public function getUnitCode()
     {
         return $this->unitCode;
     }
 
     /**
-     * @param string $unitCode
+     * @param mixed $unitCode
      * @return InvoiceLine
      */
-    public function setUnitCode(?string $unitCode): InvoiceLine
+    public function setUnitCode($unitCode)
     {
         $this->unitCode = $unitCode;
         return $this;
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getUnitCodeListId(): ?string
-    {
-        return $this->unitCodeListId;
-    }
-
-    /**
-     * @param string $unitCodeListId
-     * @return InvoiceLine
-     */
-    public function setUnitCodeListId(?string $unitCodeListId)
-    {
-        $this->unitCodeListId = $unitCodeListId;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAccountingCostCode(): ?string
+    public function getAccountingCostCode()
     {
         return $this->accountingCostCode;
     }
 
     /**
-     * @param string $accountingCostCode
+     * @param mixed $accountingCostCode
      * @return InvoiceLine
      */
-    public function setAccountingCostCode(?string $accountingCostCode): InvoiceLine
+    public function setAccountingCostCode($accountingCostCode)
     {
         $this->accountingCostCode = $accountingCostCode;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAccountingCost(): ?string
-    {
-        return $this->accountingCost;
-    }
-
-    /**
-     * @param string $accountingCost
-     * @return InvoiceLine
-     */
-    public function setAccountingCost(?string $accountingCost): InvoiceLine
-    {
-        $this->accountingCost = $accountingCost;
         return $this;
     }
 
@@ -245,7 +184,7 @@ class InvoiceLine implements XmlSerializable
      * @param Writer $writer
      * @return void
      */
-    public function xmlSerialize(Writer $writer): void
+    public function xmlSerialize(Writer $writer)
     {
         $writer->write([
             Schema::CBC . 'ID' => $this->id
@@ -257,20 +196,13 @@ class InvoiceLine implements XmlSerializable
             ]);
         }
 
-        $invoicedQuantityAttributes = [
-            'unitCode' => $this->unitCode,
-        ];
-
-        if (!empty($this->getUnitCodeListId())) {
-            $invoicedQuantityAttributes['unitCodeListID'] = $this->getUnitCodeListId();
-        }
-
         $writer->write([
             [
-                'name' => Schema::CBC .
-                    ($this->isCreditNoteLine ? 'CreditedQuantity' : 'InvoicedQuantity'),
-                'value' => number_format($this->invoicedQuantity, 2, '.', ''),
-                'attributes' => $invoicedQuantityAttributes
+                'name' => Schema::CBC . 'InvoicedQuantity',
+                'value' => $this->invoicedQuantity,
+                'attributes' => [
+                    'unitCode' => $this->unitCode
+                ]
             ],
             [
                 'name' => Schema::CBC . 'LineExtensionAmount',
@@ -286,22 +218,11 @@ class InvoiceLine implements XmlSerializable
                 Schema::CBC . 'AccountingCostCode' => $this->accountingCostCode
             ]);
         }
-        if ($this->accountingCost !== null) {
-            $writer->write([
-                Schema::CBC . 'AccountingCost' => $this->accountingCost
-            ]);
-        }
-        if ($this->invoicePeriod !== null) {
-            $writer->write([
-                Schema::CAC . 'InvoicePeriod' => $this->invoicePeriod
-            ]);
-        }
         if ($this->taxTotal !== null) {
             $writer->write([
                 Schema::CAC . 'TaxTotal' => $this->taxTotal
             ]);
         }
-
         $writer->write([
             Schema::CAC . 'Item' => $this->item,
         ]);

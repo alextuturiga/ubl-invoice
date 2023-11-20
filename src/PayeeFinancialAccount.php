@@ -13,60 +13,60 @@ class PayeeFinancialAccount implements XmlSerializable
 
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getId(): ?string
+    public function getId()
     {
         return $this->id;
     }
 
     /**
-     * @param string $id
+     * @param mixed $id
      * @return PayeeFinancialAccount
      */
-    public function setId(?string $id): PayeeFinancialAccount
+    public function setId($id)
     {
         $this->id = $id;
         return $this;
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getName(): ?string
+    public function getName()
     {
         return $this->name;
     }
 
     /**
-     * @param string $name
+     * @param mixed $name
      * @return PayeeFinancialAccount
      */
-    public function setName(?string $name): PayeeFinancialAccount
+    public function setName($name)
     {
         $this->name = $name;
         return $this;
     }
 
     /**
-     * @return FinancialInstitutionBranch
+     * @return mixed
      */
-    public function getFinancialInstitutionBranch(): ?FinancialInstitutionBranch
+    public function getFinancialInstitutionBranch()
     {
         return $this->financialInstitutionBranch;
     }
 
     /**
-     * @param FinancialInstitutionBranch $financialInstitutionBranch
+     * @param mixed $financialInstitutionBranch
      * @return PayeeFinancialAccount
      */
-    public function setFinancialInstitutionBranch(?FinancialInstitutionBranch $financialInstitutionBranch): PayeeFinancialAccount
+    public function setFinancialInstitutionBranch($financialInstitutionBranch)
     {
         $this->financialInstitutionBranch = $financialInstitutionBranch;
         return $this;
     }
 
-    public function xmlSerialize(Writer $writer): void
+    public function xmlSerialize(Writer $writer)
     {
         $writer->write([
             'name' => Schema::CBC . 'ID',

@@ -10,98 +10,59 @@ class Price implements XmlSerializable
     private $priceAmount;
     private $baseQuantity;
     private $unitCode = UnitCode::UNIT;
-    private $unitCodeListId;
-    private $allowanceCharge;
 
     /**
-     * @return float
+     * @return mixed
      */
-    public function getPriceAmount(): ?float
+    public function getPriceAmount()
     {
         return $this->priceAmount;
     }
 
     /**
-     * @param float $priceAmount
+     * @param mixed $priceAmount
      * @return Price
      */
-    public function setPriceAmount(?float $priceAmount): Price
+    public function setPriceAmount($priceAmount)
     {
         $this->priceAmount = $priceAmount;
         return $this;
     }
 
     /**
-     * @return float
+     * @return mixed
      */
-    public function getBaseQuantity(): ?float
+    public function getBaseQuantity()
     {
         return $this->baseQuantity;
     }
 
     /**
-     * @param float $baseQuantity
+     * @param mixed $baseQuantity
      * @return Price
      */
-    public function setBaseQuantity(?float $baseQuantity): Price
+    public function setBaseQuantity($baseQuantity)
     {
         $this->baseQuantity = $baseQuantity;
         return $this;
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getUnitCode(): ?string
+    public function getUnitCode()
     {
         return $this->unitCode;
     }
 
     /**
-     * @param string $unitCode
+     * @param mixed $unitCode
      * See also: src/UnitCode.php
      * @return Price
      */
-    public function setUnitCode(?string $unitCode): Price
+    public function setUnitCode(string $unitCode)
     {
         $this->unitCode = $unitCode;
-        return $this;
-    }
-
-
-    /**
-     * @return string
-     */
-    public function getUnitCodeListId(): ?string
-    {
-        return $this->unitCodeListId;
-    }
-
-    /**
-     * @param string $unitCodeListId
-     * @return Price
-     */
-    public function setUnitCodeListId(?string $unitCodeListId): Price
-    {
-        $this->unitCodeListId = $unitCodeListId;
-        return $this;
-    }
-
-    /**
-     * @return AllowanceCharge
-     */
-    public function getAllowanceCharge(): ?AllowanceCharge
-    {
-        return $this->allowanceCharge;
-    }
-
-    /**
-     * @param AllowanceCharge $allowanceCharge
-     * @return Price
-     */
-    public function setAllowanceCharge(?AllowanceCharge $allowanceCharge): Price
-    {
-        $this->allowanceCharge = $allowanceCharge;
         return $this;
     }
 
@@ -111,35 +72,23 @@ class Price implements XmlSerializable
      * @param Writer $writer
      * @return void
      */
-    public function xmlSerialize(Writer $writer): void
+    public function xmlSerialize(Writer $writer)
     {
-        $baseQuantityAttributes = [
-            'unitCode' => $this->unitCode,
-        ];
-
-        if (!empty($this->getUnitCodeListId())) {
-            $baseQuantityAttributes['unitCodeListID'] = $this->getUnitCodeListId();
-        }
-
         $writer->write([
             [
                 'name' => Schema::CBC . 'PriceAmount',
-                'value' => number_format($this->priceAmount, 2, '.', ''),
+                'value' => $this->priceAmount,
                 'attributes' => [
                     'currencyID' => Generator::$currencyID
                 ]
             ],
             [
                 'name' => Schema::CBC . 'BaseQuantity',
-                'value' => number_format($this->baseQuantity, 2, '.', ''),
-                'attributes' => $baseQuantityAttributes
+                'value' => $this->baseQuantity,
+                'attributes' => [
+                    'unitCode' => $this->unitCode
+                ]
             ]
         ]);
-
-        if ($this->allowanceCharge !== null) {
-            $writer->write([
-                Schema::CAC . 'AllowanceCharge' => $this->allowanceCharge,
-            ]);
-        }
     }
 }

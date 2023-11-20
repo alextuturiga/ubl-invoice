@@ -7,116 +7,97 @@ use Sabre\Xml\XmlSerializable;
 
 class LegalMonetaryTotal implements XmlSerializable
 {
-    private $lineExtensionAmount = 0;
-    private $taxExclusiveAmount = 0;
-    private $taxInclusiveAmount = 0;
+    private $lineExtensionAmount;
+    private $taxExclusiveAmount;
+    private $taxInclusiveAmount;
     private $allowanceTotalAmount = 0;
-    private $prepaidAmount;
-    private $payableAmount = 0;
+    private $payableAmount;
 
     /**
-     * @return float
+     * @return mixed
      */
-    public function getLineExtensionAmount(): ?float
+    public function getLineExtensionAmount()
     {
         return $this->lineExtensionAmount;
     }
 
     /**
-     * @param float $lineExtensionAmount
+     * @param mixed $lineExtensionAmount
      * @return LegalMonetaryTotal
      */
-    public function setLineExtensionAmount(?float $lineExtensionAmount): LegalMonetaryTotal
+    public function setLineExtensionAmount($lineExtensionAmount)
     {
         $this->lineExtensionAmount = $lineExtensionAmount;
         return $this;
     }
 
     /**
-     * @return float
+     * @return mixed
      */
-    public function getTaxExclusiveAmount(): ?float
+    public function getTaxExclusiveAmount()
     {
         return $this->taxExclusiveAmount;
     }
 
     /**
-     * @param float $taxExclusiveAmount
+     * @param mixed $taxExclusiveAmount
      * @return LegalMonetaryTotal
      */
-    public function setTaxExclusiveAmount(?float $taxExclusiveAmount): LegalMonetaryTotal
+    public function setTaxExclusiveAmount($taxExclusiveAmount)
     {
         $this->taxExclusiveAmount = $taxExclusiveAmount;
         return $this;
     }
 
     /**
-     * @return float
+     * @return mixed
      */
-    public function getTaxInclusiveAmount(): ?float
+    public function getTaxInclusiveAmount()
     {
         return $this->taxInclusiveAmount;
     }
 
     /**
-     * @param float $taxInclusiveAmount
+     * @param mixed $taxInclusiveAmount
      * @return LegalMonetaryTotal
      */
-    public function setTaxInclusiveAmount(?float $taxInclusiveAmount): LegalMonetaryTotal
+    public function setTaxInclusiveAmount($taxInclusiveAmount)
     {
         $this->taxInclusiveAmount = $taxInclusiveAmount;
         return $this;
     }
 
     /**
-     * @return float
+     * @return mixed
      */
-    public function getAllowanceTotalAmount(): ?float
+    public function getAllowanceTotalAmount()
     {
         return $this->allowanceTotalAmount;
     }
 
     /**
-     * @param float $allowanceTotalAmount
+     * @param mixed $allowanceTotalAmount
      * @return LegalMonetaryTotal
      */
-    public function setAllowanceTotalAmount(?float $allowanceTotalAmount): LegalMonetaryTotal
+    public function setAllowanceTotalAmount($allowanceTotalAmount)
     {
         $this->allowanceTotalAmount = $allowanceTotalAmount;
         return $this;
     }
 
     /**
-     * @return ?float
+     * @return mixed
      */
-    public function getPrepaidAmount(): ?float
-    {
-        return $this->prepaidAmount;
-    }
-
-    /**
-     * @param ?float $prepaidAmount
-     * @return LegalMonetaryTotal
-     */
-    public function setPrepaidAmount(?float $prepaidAmount): LegalMonetaryTotal
-    {
-        $this->prepaidAmount = $prepaidAmount;
-        return $this;
-    }
-
-    /**
-     * @return float
-     */
-    public function getPayableAmount(): ?float
+    public function getPayableAmount()
     {
         return $this->payableAmount;
     }
 
     /**
-     * @param float $payableAmount
+     * @param mixed $payableAmount
      * @return LegalMonetaryTotal
      */
-    public function setPayableAmount(?float $payableAmount): LegalMonetaryTotal
+    public function setPayableAmount($payableAmount)
     {
         $this->payableAmount = $payableAmount;
         return $this;
@@ -128,7 +109,7 @@ class LegalMonetaryTotal implements XmlSerializable
      * @param Writer $writer
      * @return void
      */
-    public function xmlSerialize(Writer $writer): void
+    public function xmlSerialize(Writer $writer)
     {
         $writer->write([
             [
@@ -155,29 +136,14 @@ class LegalMonetaryTotal implements XmlSerializable
                 ]
 
             ],
-            [
-                'name' => Schema::CBC . 'AllowanceTotalAmount',
-                'value' => number_format($this->allowanceTotalAmount, 2, '.', ''),
-                'attributes' => [
-                    'currencyID' => Generator::$currencyID
-                ]
-
-            ]
-        ]);
-
-        if ($this->prepaidAmount !== null) {
-            $writer->write([
-                [
-                    'name' => Schema::CBC . 'PrepaidAmount',
-                    'value' => number_format($this->prepaidAmount, 2, '.', ''),
-                    'attributes' => [
-                        'currencyID' => Generator::$currencyID
-                    ]
-                ]
-            ]);
-        }
-
-        $writer->write([
+//            [
+//                'name' => Schema::CBC . 'AllowanceTotalAmount',
+//                'value' => number_format($this->allowanceTotalAmount, 2, '.', ''),
+//                'attributes' => [
+//                    'currencyID' => Generator::$currencyID
+//                ]
+//
+//            ],
             [
                 'name' => Schema::CBC . 'PayableAmount',
                 'value' => number_format($this->payableAmount, 2, '.', ''),

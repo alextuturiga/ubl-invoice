@@ -4,34 +4,35 @@ namespace NumNum\UBL;
 
 use Sabre\Xml\Writer;
 use Sabre\Xml\XmlSerializable;
+
 use DateTime;
 
 class PaymentMeans implements XmlSerializable
 {
     private $paymentMeansCode = 1;
-    private $paymentMeansCodeAttributes = [
-        'listID' => 'UN/ECE 4461',
-        'listName' => 'Payment Means',
-        'listURI' => 'http://docs.oasis-open.org/ubl/os-UBL-2.0-update/cl/gc/default/PaymentMeansCode-2.0.gc'];
+    private $paymentMeansCodeAttributes = [];
+//    [
+//        'listID' => 'UN/ECE 4461',
+//        'listName' => 'Payment Means',
+//        'listURI' => 'http://docs.oasis-open.org/ubl/os-UBL-2.0-update/cl/gc/default/PaymentMeansCode-2.0.gc'];
     private $paymentDueDate;
     private $instructionId;
-    private $instructionNote;
     private $paymentId;
     private $payeeFinancialAccount;
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getPaymentMeansCode(): ?int
+    public function getPaymentMeansCode()
     {
         return $this->paymentMeansCode;
     }
 
     /**
-     * @param string $paymentMeansCode
+     * @param mixed $paymentMeansCode
      * @return PaymentMeans
      */
-    public function setPaymentMeansCode(?int $paymentMeansCode, $attributes = null): PaymentMeans
+    public function setPaymentMeansCode($paymentMeansCode, $attributes = null)
     {
         $this->paymentMeansCode = $paymentMeansCode;
         if (isset($attributes)) {
@@ -43,7 +44,7 @@ class PaymentMeans implements XmlSerializable
     /**
      * @return DateTime
      */
-    public function getPaymentDueDate(): ?DateTime
+    public function getPaymentDueDate()
     {
         return $this->paymentDueDate;
     }
@@ -52,61 +53,43 @@ class PaymentMeans implements XmlSerializable
      * @param DateTime $paymentDueDate
      * @return PaymentMeans
      */
-    public function setPaymentDueDate(?DateTime $paymentDueDate): PaymentMeans
+    public function setPaymentDueDate(DateTime $paymentDueDate)
     {
         $this->paymentDueDate = $paymentDueDate;
         return $this;
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getInstructionId(): ?string
+    public function getInstructionId()
     {
         return $this->instructionId;
     }
 
     /**
-     * @param string $instructionId
+     * @param mixed $instructionId
      * @return PaymentMeans
      */
-    public function setInstructionId(?string $instructionId): PaymentMeans
+    public function setInstructionId($instructionId)
     {
         $this->instructionId = $instructionId;
         return $this;
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getInstructionNote(): ?string
-    {
-        return $this->instructionNote;
-    }
-
-    /**
-     * @param string $instructionNote
-     * @return PaymentMeans
-     */
-    public function setInstructionNote(?string $instructionNote): PaymentMeans
-    {
-        $this->instructionNote = $instructionNote;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPaymentId(): ?string
+    public function getPaymentId()
     {
         return $this->paymentId;
     }
 
     /**
-     * @param string $paymentId
+     * @param mixed $paymentId
      * @return PaymentMeans
      */
-    public function setPaymentId(?string $paymentId): PaymentMeans
+    public function setPaymentId($paymentId)
     {
         $this->paymentId = $paymentId;
         return $this;
@@ -115,7 +98,7 @@ class PaymentMeans implements XmlSerializable
     /**
      * @return mixed
      */
-    public function getPayeeFinancialAccount(): ?PayeeFinancialAccount
+    public function getPayeeFinancialAccount()
     {
         return $this->payeeFinancialAccount;
     }
@@ -124,13 +107,13 @@ class PaymentMeans implements XmlSerializable
      * @param mixed $payeeFinancialAccount
      * @return PaymentMeans
      */
-    public function setPayeeFinancialAccount(?PayeeFinancialAccount $payeeFinancialAccount): PaymentMeans
+    public function setPayeeFinancialAccount($payeeFinancialAccount)
     {
         $this->payeeFinancialAccount = $payeeFinancialAccount;
         return $this;
     }
 
-    public function xmlSerialize(Writer $writer): void
+    public function xmlSerialize(Writer $writer)
     {
         $writer->write([
             'name' => Schema::CBC . 'PaymentMeansCode',
@@ -147,12 +130,6 @@ class PaymentMeans implements XmlSerializable
         if ($this->getInstructionId() !== null) {
             $writer->write([
                 Schema::CBC . 'InstructionID' => $this->getInstructionId()
-            ]);
-        }
-
-        if ($this->getInstructionNote() !== null) {
-            $writer->write([
-                Schema::CBC . 'InstructionNote' => $this->getInstructionNote()
             ]);
         }
 

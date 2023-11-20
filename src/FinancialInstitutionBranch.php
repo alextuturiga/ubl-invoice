@@ -10,24 +10,24 @@ class FinancialInstitutionBranch implements XmlSerializable
     private $id;
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getId(): ?string
+    public function getId()
     {
         return $this->id;
     }
 
     /**
-     * @param string $id
+     * @param mixed $id
      * @return FinancialInstitutionBranch
      */
-    public function setId(?string $id): FinancialInstitutionBranch
+    public function setId($id)
     {
         $this->id = $id;
         return $this;
     }
 
-    public function xmlSerialize(Writer $writer): void
+    public function xmlSerialize(Writer $writer)
     {
         $writer->write([
             Schema::CBC . 'ID' => $this->id

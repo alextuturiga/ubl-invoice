@@ -8,93 +8,37 @@ use Sabre\Xml\XmlSerializable;
 class Party implements XmlSerializable
 {
     private $name;
-    private $partyIdentificationId;
-    private $partyIdentificationSchemeId;
-    private $partyIdentificationSchemeName;
     private $postalAddress;
     private $physicalLocation;
     private $contact;
-    private $partyTaxScheme;
+    private $companyId;
+    private $taxCompanyId;
+    private $taxCompanyName;
+    private $taxScheme;
     private $legalEntity;
-    private $endpointID;
-    private $endpointID_schemeID;
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getName(): ?string
+    public function getName()
     {
         return $this->name;
     }
 
     /**
-     * @param string $name
+     * @param mixed $name
      * @return Party
      */
-    public function setName(?string $name): Party
+    public function setName($name)
     {
         $this->name = $name;
         return $this;
     }
 
     /**
-     * @return string
-     */
-    public function getPartyIdentificationId(): ?string
-    {
-        return $this->partyIdentificationId;
-    }
-
-    /**
-     * @param string $partyIdentificationId
-     * @return Party
-     */
-    public function setPartyIdentificationId(?string $partyIdentificationId): Party
-    {
-        $this->partyIdentificationId = $partyIdentificationId;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPartyIdentificationSchemeId(): ?string
-    {
-        return $this->partyIdentificationSchemeId;
-    }
-
-    /**
-     * @param string $partyIdentificationSchemeId
-     * @return Party
-     */
-    public function setPartyIdentificationSchemeId(?string $partyIdentificationSchemeId): Party
-    {
-        $this->partyIdentificationSchemeId = $partyIdentificationSchemeId;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPartyIdentificationSchemeName(): ?string
-    {
-        return $this->partyIdentificationSchemeName;
-    }
-
-    /**
-     * @param string $partyIdentificationSchemeName
-     * @return Party
-     */
-    public function setPartyIdentificationSchemeName(?string $partyIdentificationSchemeName): Party
-    {
-        $this->partyIdentificationSchemeName = $partyIdentificationSchemeName;
-        return $this;
-    }
-
-    /**
      * @return Address
      */
-    public function getPostalAddress(): ?Address
+    public function getPostalAddress()
     {
         return $this->postalAddress;
     }
@@ -103,16 +47,72 @@ class Party implements XmlSerializable
      * @param Address $postalAddress
      * @return Party
      */
-    public function setPostalAddress(?Address $postalAddress): Party
+    public function setPostalAddress($postalAddress)
     {
         $this->postalAddress = $postalAddress;
         return $this;
     }
 
     /**
+     * @return string
+     */
+    public function getCompanyId()
+    {
+        return $this->companyId;
+    }
+
+    /**
+     * @param string $companyId
+     * @return Party
+     */
+    public function setCompanyId($companyId)
+    {
+        $this->companyId = $companyId;
+        return $this;
+    }
+
+    /**
+     * @param string $taxCompanyId
+     */
+    public function setTaxCompanyId($companyId)
+    {
+        $this->taxCompanyId = $companyId;
+        return $this;
+    }
+
+    /**
+     * @param string $taxCompanyName
+     * @return Party
+     */
+    public function setTaxCompanyName($companyName)
+    {
+        $this->taxCompanyName = $companyName;
+        return $this;
+    }
+
+    /**
+     * @param TaxScheme $taxScheme.
+     * @return mixed
+     */
+    public function getTaxScheme()
+    {
+        return $this->taxScheme;
+    }
+
+    /**
+     * @param TaxScheme $taxScheme
+     * @return Party
+     */
+    public function setTaxScheme(TaxScheme $taxScheme)
+    {
+        $this->taxScheme = $taxScheme;
+        return $this;
+    }
+
+    /**
      * @return LegalEntity
      */
-    public function getLegalEntity(): ?LegalEntity
+    public function getLegalEntity()
     {
         return $this->legalEntity;
     }
@@ -121,7 +121,7 @@ class Party implements XmlSerializable
      * @param LegalEntity $legalEntity
      * @return Party
      */
-    public function setLegalEntity(?LegalEntity $legalEntity): Party
+    public function setLegalEntity(LegalEntity $legalEntity)
     {
         $this->legalEntity = $legalEntity;
         return $this;
@@ -130,7 +130,7 @@ class Party implements XmlSerializable
     /**
      * @return Address
      */
-    public function getPhysicalLocation(): ?Address
+    public function getPhysicalLocation()
     {
         return $this->physicalLocation;
     }
@@ -139,57 +139,27 @@ class Party implements XmlSerializable
      * @param Address $physicalLocation
      * @return Party
      */
-    public function setPhysicalLocation(?Address $physicalLocation): Party
+    public function setPhysicalLocation(Address $physicalLocation)
     {
         $this->physicalLocation = $physicalLocation;
         return $this;
     }
 
     /**
-     * @return PartyTaxScheme
+     * @return mixed
      */
-    public function getPartyTaxScheme(): ?PartyTaxScheme
-    {
-        return $this->partyTaxScheme;
-    }
-
-    /**
-     * @param PartyTaxScheme $partyTaxScheme
-     * @return Party
-     */
-    public function setPartyTaxScheme(PartyTaxScheme $partyTaxScheme)
-    {
-        $this->partyTaxScheme = $partyTaxScheme;
-        return $this;
-    }
-
-    /**
-     * @return Contact
-     */
-    public function getContact(): ?Contact
+    public function getContact()
     {
         return $this->contact;
     }
 
     /**
-     * @param Contact $contact
+     * @param mixed $contact
      * @return Party
      */
-    public function setContact(?Contact $contact): Party
+    public function setContact($contact)
     {
         $this->contact = $contact;
-        return $this;
-    }
-
-    /**
-     * @param $endpointID
-     * @param int|string $schemeID See list at https://docs.peppol.eu/poacc/billing/3.0/codelist/eas/
-     * @return Party
-     */
-    public function setEndpointID($endpointID, $schemeID): Party
-    {
-        $this->endpointID = $endpointID;
-        $this->endpointID_schemeID = $schemeID;
         return $this;
     }
 
@@ -199,53 +169,12 @@ class Party implements XmlSerializable
      * @param Writer $writer
      * @return void
      */
-    public function xmlSerialize(Writer $writer): void
+    public function xmlSerialize(Writer $writer)
     {
-        if ($this->endpointID !== null && $this->endpointID_schemeID !== null) {
-            $writer->write([
-                [
-                    'name' => Schema::CBC . 'EndpointID',
-                    'value' => $this->endpointID,
-                    'attributes' => [
-                        'schemeID' => is_numeric($this->endpointID_schemeID)
-                            ? sprintf('%04d', +$this->endpointID_schemeID)
-                            : $this->endpointID_schemeID
-                    ]
-                ]
-            ]);
-        }
-
-        if ($this->partyIdentificationId !== null) {
-            $partyIdentificationAttributes = [];
-
-            if (!empty($this->getPartyIdentificationSchemeId())) {
-                $partyIdentificationAttributes['schemeID'] = $this->getPartyIdentificationSchemeId();
-            }
-
-            if (!empty($this->getPartyIdentificationSchemeName())) {
-                $partyIdentificationAttributes['schemeName'] = $this->getPartyIdentificationSchemeName();
-            }
-
-            $writer->write([
-                Schema::CAC . 'PartyIdentification' => [
-                    [
-                        'name' => Schema::CBC . 'ID',
-                        'value' => $this->partyIdentificationId,
-                        'attributes' => $partyIdentificationAttributes
-                    ]
-                ],
-            ]);
-        }
-
-        if ($this->name !== null) {
-            $writer->write([
-                Schema::CAC . 'PartyName' => [
-                    Schema::CBC . 'Name' => $this->name
-                ]
-            ]);
-        }
-
         $writer->write([
+            Schema::CAC . 'PartyName' => [
+                Schema::CBC . 'Name' => $this->name
+            ],
             Schema::CAC . 'PostalAddress' => $this->postalAddress
         ]);
 
@@ -255,11 +184,25 @@ class Party implements XmlSerializable
             ]);
         }
 
-        if ($this->partyTaxScheme !== null) {
+        if ($this->taxScheme !== null) {
+            $partyTaxScheme = [];
+
+            if ($this->taxCompanyName !== null) {
+                $partyTaxScheme[Schema::CBC . 'RegistrationName'] = $this->taxCompanyName;
+            }
+//print_r($this->taxCompanyId);die;
+            if ($this->taxCompanyId !== null) {
+                $partyTaxScheme[Schema::CBC . 'CompanyID'] = $this->taxCompanyId;
+            }
+
+            $partyTaxScheme[Schema::CAC . 'TaxScheme'] = $this->taxScheme;
+
             $writer->write([
-                Schema::CAC . 'PartyTaxScheme' => $this->partyTaxScheme
+                Schema::CAC . 'PartyTaxScheme' => $partyTaxScheme
             ]);
         }
+
+
 
         if ($this->legalEntity !== null) {
             $writer->write([

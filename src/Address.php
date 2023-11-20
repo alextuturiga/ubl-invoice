@@ -8,126 +8,105 @@ use Sabre\Xml\XmlSerializable;
 class Address implements XmlSerializable
 {
     private $streetName;
-    private $additionalStreetName;
     private $buildingNumber;
     private $cityName;
     private $postalZone;
-    private $countrySubentity;
     private $country;
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getStreetName(): ?string
+    public function getStreetName()
     {
         return $this->streetName;
     }
 
     /**
-     * @param string $streetName
+     * @param mixed $streetName
      * @return Address
      */
-    public function setStreetName(?string $streetName): Address
+    public function setStreetName($streetName)
     {
         $this->streetName = $streetName;
         return $this;
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getAdditionalStreetName(): ?string
-    {
-        return $this->additionalStreetName;
-    }
-
-    /**
-     * @param string $additionalStreetName
-     * @return Address
-     */
-    public function setAdditionalStreetName(?string $additionalStreetName): Address
-    {
-        $this->additionalStreetName = $additionalStreetName;
-        return $this;
-    }
-
-    /**
-    /**
-     * @return string
-     */
-    public function getBuildingNumber(): ?string
+    public function getBuildingNumber()
     {
         return $this->buildingNumber;
     }
 
     /**
-     * @param string $buildingNumber
+     * @param mixed $buildingNumber
      * @return Address
      */
-    public function setBuildingNumber(?string $buildingNumber): Address
+    public function setBuildingNumber($buildingNumber)
     {
         $this->buildingNumber = $buildingNumber;
         return $this;
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getCityName(): ?string
+    public function getCityName()
     {
         return $this->cityName;
     }
 
     /**
-     * @param string $cityName
+     * @param mixed $cityName
      * @return Address
      */
-    public function setCityName(?string $cityName): Address
+    public function setCityName($cityName)
     {
         $this->cityName = $cityName;
         return $this;
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getPostalZone(): ?string
+    public function getPostalZone()
     {
         return $this->postalZone;
     }
 
     /**
-     * @param string $postalZone
+     * @param mixed $postalZone
      * @return Address
      */
-    public function setPostalZone(?string $postalZone): Address
+    public function setPostalZone($postalZone)
     {
         $this->postalZone = $postalZone;
         return $this;
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getCountrySubentity(): ?string
+    public function getCountrySubentity()
     {
         return $this->countrySubentity;
     }
 
     /**
-     * @param string $subentity
+     * @param mixed $postalZone
      * @return Address
      */
-    public function setCountrySubentity(string $countrySubentity): Address
+    public function setCountrySubentity($countrySubentity)
     {
         $this->countrySubentity = $countrySubentity;
         return $this;
     }
-    
+
     /**
      * @return Country
      */
-    public function getCountry(): ?Country
+    public function getCountry()
     {
         return $this->country;
     }
@@ -136,7 +115,7 @@ class Address implements XmlSerializable
      * @param Country $country
      * @return Address
      */
-    public function setCountry(Country $country): Address
+    public function setCountry(Country $country)
     {
         $this->country = $country;
         return $this;
@@ -148,16 +127,11 @@ class Address implements XmlSerializable
      * @param Writer $writer
      * @return void
      */
-    public function xmlSerialize(Writer $writer): void
+    public function xmlSerialize(Writer $writer)
     {
         if ($this->streetName !== null) {
             $writer->write([
                 Schema::CBC . 'StreetName' => $this->streetName
-            ]);
-        }
-        if ($this->additionalStreetName !== null) {
-            $writer->write([
-                Schema::CBC . 'AdditionalStreetName' => $this->additionalStreetName
             ]);
         }
         if ($this->buildingNumber !== null) {
@@ -170,14 +144,14 @@ class Address implements XmlSerializable
                 Schema::CBC . 'CityName' => $this->cityName,
             ]);
         }
-        if ($this->postalZone !== null) {
-            $writer->write([
-                Schema::CBC . 'PostalZone' => $this->postalZone,
-            ]);
-        }
         if ($this->countrySubentity !== null) {
             $writer->write([
                 Schema::CBC . 'CountrySubentity' => $this->countrySubentity,
+            ]);
+        }
+        if ($this->postalZone !== null) {
+            $writer->write([
+                Schema::CBC . 'PostalZone' => $this->postalZone,
             ]);
         }
         if ($this->country !== null) {
